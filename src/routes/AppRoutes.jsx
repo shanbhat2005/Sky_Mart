@@ -8,6 +8,7 @@ import ProtectedRoute from './ProtectedRoute'
 import Home from '../pages/Home'
 import Shop from '../pages/Shop'
 import PublicRoute from './PublicRoute'
+import Cartpage from '../pages/Cartpage'
 
 const Approutes = () => {
 
@@ -45,12 +46,17 @@ const Approutes = () => {
              {
       path:"/shop",
       element:<Shop/>
+    },
+    {
+      path:"/cart",
+      element:<Cartpage/>
     }
             
           ]
         }
       ]
     }
+    
    
   ])
   return (

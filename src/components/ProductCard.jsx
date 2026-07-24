@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ShoppingCart, Star } from "lucide-react";
+import { Cart } from "../context/Cartcontext";
 
 const ProductCard = ({ product }) => {
+
+  const {addToCart}= useContext(Cart)
   return (
     <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
       
@@ -56,7 +59,8 @@ const ProductCard = ({ product }) => {
             </p>
           </div>
 
-          <button className="flex items-center gap-2 bg-lime-400 hover:bg-lime-500 transition px-5 py-2.5 rounded-full font-semibold">
+          <button onClick={()=> addToCart(product)}
+           className="flex items-center gap-2 bg-lime-400 hover:bg-lime-500 transition px-5 py-2.5 rounded-full font-semibold">
             <ShoppingCart className="w-4 h-4" />
             Add
           </button>

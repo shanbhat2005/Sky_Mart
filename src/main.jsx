@@ -5,11 +5,14 @@ import { BrowserRouter } from 'react-router'
 import { AuthProvider } from './context/Authcontext.jsx'
 import AppRoutes from './routes/Approutes.jsx'
 import { ProductProvider } from './context/ProductsContext.jsx'
+import { CartProvider } from './context/Cartcontext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <ProductProvider>
+      <CartProvider>
     <AppRoutes/>
+    </CartProvider>
     </ProductProvider>
     </AuthProvider>
 )

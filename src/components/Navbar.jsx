@@ -19,6 +19,10 @@ navigate("/")
     
   }
 
+  const handleCartClick=()=>{
+    navigate("/cart")
+  }
+
   return (
     <div className="flex items-center justify-between px-6 py-4 md:px-10 bg-black text-white">
       {/* Logo */}
@@ -77,6 +81,7 @@ navigate("/")
           <span className="text-sm">{loggedInUser.name}</span>
         </div>
         <button
+onClick={handleCartClick}        
           
           className="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center hover:bg-gray-900 transition"
         >
