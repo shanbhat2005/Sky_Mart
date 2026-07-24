@@ -1,20 +1,40 @@
-import { Mail, Lock, Eye, ArrowRight, Zap } from "lucide-react";
-import { useContext } from "react";
-import { Link } from "react-router";
-import { AuthContext } from "../context/Authcontext";
-import { useForm } from 'react-hook-form';
+import { Mail, Lock, Eye, EyeOff, ArrowRight, Zap } from "lucide-react";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { useForm } from "react-hook-form";
+import { Auth } from "../context/Authcontext";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { skyMartUsers,setLoggedInUser } = useContext(Auth);
 
-  const {login}= useContext(AuthContext);
-  const {register,reset,handleSubmit,formState:{errors}}=useForm({
-    mode:"onChange"
-  })
+  const [showPassword, setShowPassword] = useState(false);
 
-  const onLogin=(data)=>{
-    login(data.email,data.password)
-  }
-  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+  });
+
+  const onLogin = (data) => {
+    console.log(data);
+
+    let isUser=skyMartUsers.find((user)=>{
+return user.email===data.email && user.password===data.password
+    })
+
+    if(!isUser){
+      alert("user does not exist")
+      return 
+    }
+    alert("you are being redirected...")
+    navigate("/home")
+    setLoggedInUser(isUser)
+    localStorage.setItem("loggedInUser",JSON.stringify(isUser))
+
+  };
 
   return (
     <div className="min-h-screen bg-black text-white lg:grid lg:grid-cols-2">
@@ -31,7 +51,7 @@ const Login = () => {
           </h1>
         </div>
 
-        {/* Hero Text */}
+        {/* Hero */}
         <div className="max-w-xl">
           <p className="uppercase tracking-widest text-lime-400 font-semibold mb-6">
             Welcome Back
@@ -77,52 +97,75 @@ const Login = () => {
             Enter your credentials to continue
           </p>
 
-         <form onSubmit={handleSubmit(onLogin)} className="mt-10 space-y-6">
+          <form onSubmit={handleSubmit(onLogin)} className="mt-10 space-y-6">
             {/* Email */}
-            <div className="flex items-center rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4">
-              <Mail className="text-zinc-500" size={20} />
-              <input {...register("email",{
-                required:"email is required",
-                pattern:{
-                  value:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message:"invalid email format"
-                }
-              })}
-                type="email"
-                placeholder="Email address"
-                className="ml-4 flex-1 bg-transparent outline-none placeholder:text-zinc-500"
-              />
-              
+            <div>
+              <div className="flex items-center rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4">
+                <Mail className="text-zinc-500" size={20} />
+
+                <input
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Invalid email format",
+                    },
+                  })}
+                  type="email"
+                  placeholder="Email address"
+                  className="ml-4 flex-1 bg-transparent outline-none placeholder:text-zinc-500"
+                />
+              </div>
+
+              {errors.email && (
+                <p className="mt-2 rounded-xl border border-red-500/30 bg-zinc-900 px-4 py-3 text-sm text-red-400">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
-         {errors.email && (
-  <p className="mt-2 rounded-xl border border-red-500/30 bg-zinc-900 px-4 py-3 text-sm font-medium text-red-400 shadow-lg shadow-red-500/5">
-    {errors.email.message}
-  </p>
-)}
 
             {/* Password */}
-            <div className="flex items-center rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4">
-              <Lock className="text-zinc-500" size={20} />
+            <div>
+              <div className="flex items-center rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4">
+                <Lock className="text-zinc-500" size={20} />
 
-              <input {...register("password",{
-                required:"password is required",
-                minLength: {
-      value: 4,
-      message: "Password must be at least 4 characters"
-    },
-    
-              })}
-                type="password"
-                placeholder="Password"
-                className="ml-4 flex-1 bg-transparent outline-none placeholder:text-zinc-500"
-              />
+                <input
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 4,
+                      message: "Password must be at least 4 characters",
+                    },
+                  })}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  className="ml-4 flex-1 bg-transparent outline-none placeholder:text-zinc-500"
+                />
 
-              <Eye className="text-zinc-500 cursor-pointer" size={20} />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <EyeOff className="text-zinc-500" size={20} />
+                  ) : (
+                    <Eye className="text-zinc-500" size={20} />
+                  )}
+                </button>
+              </div>
+
+              {errors.password && (
+                <p className="mt-2 rounded-xl border border-red-500/30 bg-zinc-900 px-4 py-3 text-sm text-red-400">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
-            {errors.password && (<p className="mt-2 rounded-xl border border-red-500/30 bg-zinc-900 px-4 py-3 text-sm font-medium text-red-400 shadow-lg shadow-red-500/5">{errors.password.message}</p>)}
 
-            {/* Button */}
-            <button className="flex w-full items-center justify-center gap-3 rounded-2xl bg-lime-400 py-4 text-xl font-bold text-black transition hover:opacity-90">
+            {/* Submit */}
+            <button
+              type="submit"
+              className="flex w-full items-center justify-center gap-3 rounded-2xl bg-lime-400 py-4 text-xl font-bold text-black transition hover:opacity-90"
+            >
               Sign in
               <ArrowRight size={22} />
             </button>
@@ -130,12 +173,12 @@ const Login = () => {
             {/* Footer */}
             <p className="text-center text-zinc-500">
               Don't have an account?{" "}
-             <Link
-  to="/signup"
-  className="font-semibold text-lime-400 hover:underline"
->
-  Create one
-</Link>
+              <Link
+                to="/signup"
+                className="font-semibold text-lime-400 hover:underline"
+              >
+                Create one
+              </Link>
             </p>
           </form>
         </div>
