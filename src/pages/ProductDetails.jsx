@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router";
 import { useContext } from "react";
 import { Product } from "../context/ProductsContext";
-import { Cart } from "../context/CartContext";
+import { Cart } from "../context/Cartcontext";
 
 const ProductDetails = () => {
     const { id } = useParams();

@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router";
 import CategoryCard from "../components/CategoryCard";
 import { useContext } from "react";
-import { Cart } from "../context/CartContext";
+import { Cart } from "../context/Cartcontext";
 import { Auth } from "../context/Authcontext";
 
 export default function Home() {
