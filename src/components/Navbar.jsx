@@ -35,7 +35,6 @@ navigate("/")
         </span>
       </div>
 
-      {/* Nav links (hardcoded buttons, no loop) */}
       <div className="hidden md:flex items-center gap-8 text-sm">
         <button navigate="/home"
           onClick={()=>{navigate("/home");
@@ -61,7 +60,7 @@ navigate("/")
   Shop
 </button>
 
-        <button
+        <button onClick={()=> navigate("/about")}
           className={
             location.pathname === "/about"
               ? "text-lime-400 font-medium"
@@ -72,7 +71,6 @@ navigate("/")
         </button>
       </div>
 
-      {/* Right side */}
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2 border border-gray-700 rounded-full pl-1 pr-4 py-1">
           <div className="w-6 h-6 rounded-full bg-lime-400 text-black text-xs font-bold flex items-center justify-center">

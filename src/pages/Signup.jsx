@@ -46,7 +46,6 @@ let user=[...skyMartUsers,data]
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center px-6 py-12">
-      {/* Logo */}
       <div className="flex items-center gap-2">
         <div className="w-12 h-12 rounded-xl bg-lime-400 flex items-center justify-center">
           <Zap size={24} className="text-black fill-black" />
@@ -67,7 +66,6 @@ let user=[...skyMartUsers,data]
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-5">
-          {/* Name */}
           <div>
             <div className="relative">
               <User
@@ -100,7 +98,6 @@ let user=[...skyMartUsers,data]
             )}
           </div>
 
-          {/* Email */}
           <div>
             <div className="relative">
               <Mail
@@ -129,7 +126,6 @@ let user=[...skyMartUsers,data]
             )}
           </div>
 
-          {/* Password */}
           <div>
             <div className="relative">
               <Lock
@@ -166,7 +162,6 @@ let user=[...skyMartUsers,data]
             )}
           </div>
 
-          {/* Confirm Password */}
           <div>
             <div className="relative">
               <Lock

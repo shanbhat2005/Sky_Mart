@@ -1,36 +1,84 @@
-import { createContext, useState } from "react";
+    import { createContext, useEffect, useState } from "react";
 
-export const Cart=createContext()
 
-export const CartProvider=({children})=>{
+export const Cart = createContext();
 
-const [cart, setCart] = useState([])
-console.log(cart);
+export const CartProvider = ({ children }) => {
+    const [cart, setCart] = useState(() => { return JSON.parse(localStorage.getItem("cart")) || [];
+});
+useEffect(() => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}, [cart]);
 
-const addToCart=(product)=>{
-    const exist= cart.find((item)=>{
-return item.id===product.id
-    })
+  console.log(cart);
 
-    if(exist){
-       const updatedCart=cart.map((item)=>{
-        if(product.id===item.id){
-            return {...item,quantity:item.quantity+1}
+  const addToCart = (product) => {
+    const exist = cart.find((item) => {
+      return item.id === product.id;
+    });
+
+    if (exist) {
+      const updatedCart = cart.map((item) => {
+        if (product.id === item.id) {
+          return { ...item, quantity: item.quantity + 1 };
         }
-        return item
-       })
-       setCart(updatedCart)
+        return item;
+      });
+
+      setCart(updatedCart);
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
     }
-    else{
-        setCart([...cart,{...product,quantity:1}])
+  };
+  const removeFromCart = (id) => {
+  const updatedCart = cart.filter((item) => item.id !== id);
+  setCart(updatedCart);
+};
 
-    }
-    console.log(exist);
-    
+  const increaseQuantity = (id) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
 
-}
+      return item;
+    });
 
+    setCart(updatedCart);
+  };
 
+  const decreaseQuantity = (id) => {
+    const updatedCart = cart
+      .map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          };
+        }
 
-    return <Cart.Provider value={{cart,setCart,addToCart}}>{children}</Cart.Provider>
-}
+        return item;
+      })
+      .filter((item) => item.quantity > 0);
+
+    setCart(updatedCart);
+  };
+
+  return (
+    <Cart.Provider
+      value={{
+        cart,
+        setCart,
+        addToCart,
+        increaseQuantity,
+        decreaseQuantity,
+        removeFromCart,
+      }}
+    >
+      {children}
+    </Cart.Provider>
+  );
+};

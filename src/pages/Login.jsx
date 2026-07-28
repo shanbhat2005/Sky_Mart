@@ -38,9 +38,7 @@ return user.email===data.email && user.password===data.password
 
   return (
     <div className="min-h-screen bg-black text-white lg:grid lg:grid-cols-2">
-      {/* Left Section */}
       <div className="hidden lg:flex flex-col justify-between p-14 border-r border-zinc-800">
-        {/* Logo */}
         <div className="flex items-center gap-3">
           <div className="h-12 w-12 rounded-2xl bg-lime-400 flex items-center justify-center">
             <Zap className="h-6 w-6 text-black fill-black" />
@@ -51,7 +49,6 @@ return user.email===data.email && user.password===data.password
           </h1>
         </div>
 
-        {/* Hero */}
         <div className="max-w-xl">
           <p className="uppercase tracking-widest text-lime-400 font-semibold mb-6">
             Welcome Back
@@ -69,7 +66,6 @@ return user.email===data.email && user.password===data.password
           </p>
         </div>
 
-        {/* Stats */}
         <div className="grid grid-cols-3 gap-5">
           <div className="rounded-3xl border border-zinc-700 p-8 text-center">
             <h3 className="text-4xl font-bold text-lime-400">20K+</h3>
@@ -88,7 +84,6 @@ return user.email===data.email && user.password===data.password
         </div>
       </div>
 
-      {/* Right Section */}
       <div className="flex items-center justify-center p-6">
         <div className="w-full max-w-md rounded-3xl border border-zinc-800 bg-zinc-950 p-10 shadow-2xl">
           <h2 className="text-5xl font-bold">Sign in</h2>
@@ -98,7 +93,6 @@ return user.email===data.email && user.password===data.password
           </p>
 
           <form onSubmit={handleSubmit(onLogin)} className="mt-10 space-y-6">
-            {/* Email */}
             <div>
               <div className="flex items-center rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4">
                 <Mail className="text-zinc-500" size={20} />
@@ -124,7 +118,6 @@ return user.email===data.email && user.password===data.password
               )}
             </div>
 
-            {/* Password */}
             <div>
               <div className="flex items-center rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4">
                 <Lock className="text-zinc-500" size={20} />
@@ -161,7 +154,6 @@ return user.email===data.email && user.password===data.password
               )}
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               className="flex w-full items-center justify-center gap-3 rounded-2xl bg-lime-400 py-4 text-xl font-bold text-black transition hover:opacity-90"
@@ -170,7 +162,6 @@ return user.email===data.email && user.password===data.password
               <ArrowRight size={22} />
             </button>
 
-            {/* Footer */}
             <p className="text-center text-zinc-500">
               Don't have an account?{" "}
               <Link
