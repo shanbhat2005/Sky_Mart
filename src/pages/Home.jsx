@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 import CategoryCard from "../components/CategoryCard";
 import { useContext } from "react";
 import { Cart } from "../context/CartContext";
-import { Auth } from "../context/AuthContext";
+import { Auth } from "../context/Authcontext";
 
 export default function Home() {
   const { loggedInUser } = useContext(Auth);
