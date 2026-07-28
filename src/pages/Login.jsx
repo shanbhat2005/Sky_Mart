@@ -37,9 +37,17 @@ return user.email===data.email && user.password===data.password
   };
 
   return (
-    <div className="min-h-screen bg-black text-white lg:grid lg:grid-cols-2">
-      <div className="hidden lg:flex flex-col justify-between p-14 border-r border-zinc-800">
-        <div className="flex items-center gap-3">
+    <div
+      className="min-h-screen bg-black text-white lg:grid lg:grid-cols-2"
+      style={{ fontFamily: "'Inter', sans-serif" }}
+    >
+      <div className="hidden lg:flex flex-col justify-between p-14 border-r border-zinc-800 relative overflow-hidden">
+        <Zap
+          className="absolute -right-10 -top-10 w-64 h-64 text-zinc-900 rotate-12 pointer-events-none"
+          strokeWidth={1}
+        />
+
+        <div className="relative flex items-center gap-3">
           <div className="h-12 w-12 rounded-2xl bg-lime-400 flex items-center justify-center">
             <Zap className="h-6 w-6 text-black fill-black" />
           </div>
@@ -49,15 +57,21 @@ return user.email===data.email && user.password===data.password
           </h1>
         </div>
 
-        <div className="max-w-xl">
-          <p className="uppercase tracking-widest text-lime-400 font-semibold mb-6">
+        <div className="relative max-w-xl">
+          <p
+            className="uppercase tracking-[0.2em] text-lime-400 font-semibold mb-6 text-sm"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
             Welcome Back
           </p>
 
-          <h2 className="text-7xl font-bold leading-tight">
+          <h2
+            className="text-7xl leading-[1.05]"
+            style={{ fontFamily: "'Fraunces', serif" }}
+          >
             Shop the future.
             <br />
-            <span className="text-lime-400">Today.</span>
+            <span className="italic text-lime-400">Today.</span>
           </h2>
 
           <p className="mt-8 text-xl text-zinc-500 leading-relaxed">
@@ -66,27 +80,53 @@ return user.email===data.email && user.password===data.password
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-5">
-          <div className="rounded-3xl border border-zinc-700 p-8 text-center">
-            <h3 className="text-4xl font-bold text-lime-400">20K+</h3>
-            <p className="text-zinc-500 mt-2">Products</p>
+        <div className="relative grid grid-cols-3 gap-5">
+          <div className="relative rounded-3xl border border-zinc-700 p-8 text-center">
+            <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-black border border-zinc-700" />
+            <h3
+              className="text-4xl font-bold text-lime-400"
+              style={{ fontFamily: "'Fraunces', serif" }}
+            >
+              20K+
+            </h3>
+            <p className="text-zinc-500 mt-2 text-sm uppercase tracking-wide">
+              Products
+            </p>
           </div>
 
-          <div className="rounded-3xl border border-zinc-700 p-8 text-center">
-            <h3 className="text-4xl font-bold text-lime-400">50K+</h3>
-            <p className="text-zinc-500 mt-2">Users</p>
+          <div className="relative rounded-3xl border border-zinc-700 p-8 text-center">
+            <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-black border border-zinc-700" />
+            <h3
+              className="text-4xl font-bold text-lime-400"
+              style={{ fontFamily: "'Fraunces', serif" }}
+            >
+              50K+
+            </h3>
+            <p className="text-zinc-500 mt-2 text-sm uppercase tracking-wide">
+              Users
+            </p>
           </div>
 
-          <div className="rounded-3xl border border-zinc-700 p-8 text-center">
-            <h3 className="text-4xl font-bold text-lime-400">4.9★</h3>
-            <p className="text-zinc-500 mt-2">Rating</p>
+          <div className="relative rounded-3xl border border-zinc-700 p-8 text-center">
+            <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-black border border-zinc-700" />
+            <h3
+              className="text-4xl font-bold text-lime-400"
+              style={{ fontFamily: "'Fraunces', serif" }}
+            >
+              4.9★
+            </h3>
+            <p className="text-zinc-500 mt-2 text-sm uppercase tracking-wide">
+              Rating
+            </p>
           </div>
         </div>
       </div>
 
       <div className="flex items-center justify-center p-6">
         <div className="w-full max-w-md rounded-3xl border border-zinc-800 bg-zinc-950 p-10 shadow-2xl">
-          <h2 className="text-5xl font-bold">Sign in</h2>
+          <h2 className="text-5xl" style={{ fontFamily: "'Fraunces', serif" }}>
+            Sign in
+          </h2>
 
           <p className="mt-3 text-zinc-500 text-lg">
             Enter your credentials to continue
@@ -94,7 +134,7 @@ return user.email===data.email && user.password===data.password
 
           <form onSubmit={handleSubmit(onLogin)} className="mt-10 space-y-6">
             <div>
-              <div className="flex items-center rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4">
+              <div className="flex items-center rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4 focus-within:border-lime-400/60 transition">
                 <Mail className="text-zinc-500" size={20} />
 
                 <input
@@ -119,7 +159,7 @@ return user.email===data.email && user.password===data.password
             </div>
 
             <div>
-              <div className="flex items-center rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4">
+              <div className="flex items-center rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4 focus-within:border-lime-400/60 transition">
                 <Lock className="text-zinc-500" size={20} />
 
                 <input
@@ -156,7 +196,7 @@ return user.email===data.email && user.password===data.password
 
             <button
               type="submit"
-              className="flex w-full items-center justify-center gap-3 rounded-2xl bg-lime-400 py-4 text-xl font-bold text-black transition hover:opacity-90"
+              className="flex w-full items-center justify-center gap-3 rounded-2xl bg-lime-400 py-4 text-xl font-bold text-black transition hover:bg-lime-300"
             >
               Sign in
               <ArrowRight size={22} />

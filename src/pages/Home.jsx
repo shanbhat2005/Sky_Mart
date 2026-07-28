@@ -10,8 +10,10 @@ import { useNavigate } from "react-router";
 import CategoryCard from "../components/CategoryCard";
 import { useContext } from "react";
 import { Cart } from "../context/CartContext";
+import { Auth } from "../context/AuthContext";
 
 export default function Home() {
+  const { loggedInUser } = useContext(Auth);
   const navigate = useNavigate();
   const { cart } = useContext(Cart);
 
@@ -60,7 +62,9 @@ if (hour < 12) {
             >
               Welcome back,
               <br />
-              <span className="italic text-[#E3A23C]">shan!</span>
+              <span className="italic text-[#E3A23C]">
+  {loggedInUser?.name}!
+</span>
             </h1>
 
             <p className="text-[#8B9199] text-base mb-8 max-w-md">

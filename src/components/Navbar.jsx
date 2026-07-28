@@ -5,7 +5,7 @@ import { Auth } from "../context/Authcontext";
 
 export default function Navbar() {
 
-  let {loggedInUser}=useContext(Auth)
+  let {loggedInUser,setLoggedInUser }=useContext(Auth)
 
   let navigate= useNavigate()
   let location= useLocation();
@@ -13,7 +13,7 @@ export default function Navbar() {
 
  
   function handleLogoutClick() {
-
+setLoggedInUser(null)
 localStorage.removeItem("loggedInUser")
 navigate("/")
     

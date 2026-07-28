@@ -45,7 +45,10 @@ let user=[...skyMartUsers,data]
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center px-6 py-12">
+    <div
+      className="min-h-screen bg-black flex flex-col items-center justify-center px-6 py-12"
+      style={{ fontFamily: "'Inter', sans-serif" }}
+    >
       <div className="flex items-center gap-2">
         <div className="w-12 h-12 rounded-xl bg-lime-400 flex items-center justify-center">
           <Zap size={24} className="text-black fill-black" />
@@ -57,7 +60,17 @@ let user=[...skyMartUsers,data]
       </div>
 
       <div className="w-full max-w-md mt-10 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8">
-        <h2 className="text-2xl font-extrabold text-white">
+        <p
+          className="uppercase tracking-[0.2em] text-lime-400 text-xs mb-3"
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          Get started
+        </p>
+
+        <h2
+          className="text-3xl text-white"
+          style={{ fontFamily: "'Fraunces', serif" }}
+        >
           Create account
         </h2>
 
@@ -198,7 +211,7 @@ let user=[...skyMartUsers,data]
 
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-lime-400 py-3.5 font-bold text-black hover:bg-lime-300"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-lime-400 py-3.5 font-bold text-black hover:bg-lime-300 transition"
           >
             Create Account
             <ArrowRight size={18} />
