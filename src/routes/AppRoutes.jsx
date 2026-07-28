@@ -12,7 +12,7 @@ import Cartpage from "../pages/Cartpage";
 import ProductDetails from "../pages/ProductDetails";
 import About from "../pages/About";
 
-const Approutes = () => {
+const AppRoutes = () => {
   let router = createBrowserRouter([
     {
       path: "/",
@@ -69,4 +69,4 @@ const Approutes = () => {
   return <RouterProvider router={router} />;
 };
 
-export default Approutes;
+export default AppRoutes;
